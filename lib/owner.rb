@@ -1,4 +1,3 @@
-require 'pry'
 class Owner
     
   attr_reader :name, :species
@@ -12,7 +11,7 @@ class Owner
   end
   
   def say_species
-    "I am a #{@species}."
+    "I am a #{self.species}."
   end
 
   def self.all
@@ -20,11 +19,11 @@ class Owner
   end
 
   def self.count
-    @@all.count
+    self.all.count
   end
 
   def self.reset_all
-    @@all = []
+    self.all.clear
   end
 
   def cats
@@ -45,14 +44,26 @@ class Owner
 
   def buy_dog(name)
     Dog.new(name, self)
-      
   end
 
-def walk_dogs
-  Dog.mood = "happy"
-#binding.pry
-end 
+  def walk_dogs
+    self.dogs.each {|dog| dog.mood = "happy"}
+  end
 
+  def feed_cats
+    self.cats.each {|cat| cat.mood = "happy"}
+  end
 
+  def sell_pets
+    pets = self.cats + self.dogs
+    pets.map do |pet|
+      pet.mood = "nervous"
+      pet.owner = nil
+    end
+  end
+
+  def list_pets
+    "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
+  end
 
 end
