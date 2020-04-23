@@ -43,8 +43,25 @@ class Owner
   end
 
   def buy_cat(cat)
-    
+    Cat.new(cat, self)
+  end
 
+  def buy_dog(dog)
+    Dog.new(dog, self)
+  end
+
+
+  def walk_dogs
+    Dog.all.select { |dog| dog.owner == self }.map { |dog| dog.mood = "happy" }
+  end
+
+  def feed_cats
+    Cat.all.select { |cat| cat.owner == self }.map { |cat| cat.mood = "happy" }
+  end
+
+  def sell_pets
+    Cat.all.select { |cat| cat.owner == self }.map { |cat| cat.mood = "nervous" }
+    Dog.all.select { |dog| dog.owner == self }.map { |dog| dog.mood = "nervous" }
   end
 
 
