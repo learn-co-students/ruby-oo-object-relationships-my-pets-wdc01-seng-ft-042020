@@ -60,10 +60,10 @@ class Owner
   end
 
   def sell_pets
-    Cat.all.select { |cat| cat.owner == self }.map { |cat| cat.mood = "nervous"}
-    Dog.all.select { |dog| dog.owner == self }.map { |dog| dog.mood = "nervous" }
-    Cat.all.select { |cat| cat.owner == self }.map { |cat|  cat.owner = nil }
-    Dog.all.select { |dog| dog.owner == self }.map { |dog| dog.owner = nil }
+    self.cats.map { |cat| cat.mood = "nervous"}
+    self.dogs.map { |dog| dog.mood = "nervous" }
+    self.cats.map { |cat| cat.owner = nil }
+    self.dogs.map { |dog| dog.owner = nil }
   end
   def list_pets
     "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
