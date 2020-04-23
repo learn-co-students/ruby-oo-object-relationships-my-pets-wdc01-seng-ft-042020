@@ -30,7 +30,22 @@ class Owner
     @@all.clear
   end
 
+  def cats
+    Cat.all.find_all { |cat| cat.owner == self }
+  end
 
+  
+  def dogs
+    Dog.all.find_all do |dog|
+      dog.owner == self
+    end
+
+  end
+
+  def buy_cat(cat)
+    
+
+  end
 
 
 end
